@@ -9,7 +9,7 @@ data class Satelite (
 
     var message: String? = null,
 
-    var poisiton: Pair<Float, Float>
+    var poisiton: Position
 )
 
 data class SateliteRequest (
