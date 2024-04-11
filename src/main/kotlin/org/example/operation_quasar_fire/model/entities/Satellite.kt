@@ -1,4 +1,4 @@
-package org.example.operation_quasar_fire.entities
+package org.example.operation_quasar_fire.model.entities
 
 data class Satellite (
     var id: Int? = null,
