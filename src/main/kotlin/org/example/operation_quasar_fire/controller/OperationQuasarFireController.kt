@@ -34,7 +34,7 @@ class OperationQuasarFireController {
 
     @GetMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getMessage(@RequestBody satellitesCollection: SatelliteCollectionDTO): ResponseEntity<String> {
-        val messages = satellitesCollection.satellites.map { it.message.toString() }
+        val messages = satellitesCollection.satellites.map { it.message }
         val result = messageService.getMessage(messages)
         return ResponseEntity.ok(result)
     }
@@ -59,7 +59,7 @@ class OperationQuasarFireController {
     private fun getCarrierPositionAndMessage(satellitesCollection: SatelliteCollectionDTO): CarrierDTO {
         val distances = satellitesCollection.satellites.map { it.distance }
         val position = locationService.getLocation(distances)
-        val message = messageService.getMessage(satellitesCollection.satellites.map { it.message.toString() })
+        val message = messageService.getMessage(satellitesCollection.satellites.map { it.message })
         return CarrierDTO(PositionDTO(position.x, position.y), message);
     }
 }
