@@ -3,7 +3,7 @@ package org.example.operation_quasar_fire.service
 import org.example.operation_quasar_fire.model.entities.Position
 
 class LocationService {
-    fun getLocation(distances: List<Float>, positions: List<Pair<Double, Double>>): Position? {
+    fun getLocation(distances: List<Float>): Position {
         val calculatedPosition = trilaterate(distances.toFloatArray(),  floatArrayOf())
         return Position(calculatedPosition[0], calculatedPosition[1])
     }

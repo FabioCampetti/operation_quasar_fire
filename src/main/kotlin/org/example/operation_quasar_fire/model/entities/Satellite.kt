@@ -1,17 +1,8 @@
 package org.example.operation_quasar_fire.model.entities
 
 data class Satellite (
-    var id: Int? = null,
-
-    var name: String? = null,
-
-    var distance: Float? = null,
-
-    var message: String? = null,
-
-    var poisiton: Position
-)
-
-data class SatelliteRequest (
-    var satellites: List<Satellite>? = null
-)
+    val id: Int? = null,
+    val name: String? = null,
+    val distance: Float? = null,
+    override var message: String? = null
+): Ship
