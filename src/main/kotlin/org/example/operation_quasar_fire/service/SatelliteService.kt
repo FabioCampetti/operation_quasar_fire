@@ -1,5 +1,6 @@
 package org.example.operation_quasar_fire.service
 
+import org.example.operation_quasar_fire.dto.SatelliteCollectionDTO
 import org.example.operation_quasar_fire.dto.SatelliteDTO
 import org.example.operation_quasar_fire.model.entities.Satellite
 import org.example.operation_quasar_fire.model.repository.SatelliteRepository
@@ -11,6 +12,12 @@ class SatelliteService {
 
     fun getSatellite(): SatelliteDTO {
         return SatelliteDTO(toString(), 0.0f, listOf(toString()))
+    }
+
+    fun getAllSatellites(): SatelliteCollectionDTO {
+        val satellites = this.sateliteRepository?.findAll()
+        val satelliteDTOs = satellites?.map { satelliteToDto(it) } ?: emptyList()
+        return SatelliteCollectionDTO(satellites = satelliteDTOs)
     }
 
     fun updateSatellite(satelliteDTO: SatelliteDTO) {
@@ -31,6 +38,14 @@ class SatelliteService {
             name = satelliteDTO.name,
             distance = satelliteDTO.distance,
             message = satelliteDTO.message.toString()
+        )
+    }
+
+    private fun satelliteToDto(satellite: Satellite): SatelliteDTO {
+        return SatelliteDTO(
+            name = satellite.name,
+            distance = satellite.distance,
+            message = listOf( satellite.message)
         )
     }
 }

@@ -41,18 +41,25 @@ class OperationQuasarFireController {
 
     @PostMapping("/topsecret")
     fun getTopSecretLocation(@RequestBody satellitesCollection: SatelliteCollectionDTO): ResponseEntity<CarrierDTO> {
-        val distances = satellitesCollection.satellites.map { it.distance }
-        val position = locationService.getLocation(distances)
-        return run {
-            val message = messageService.getMessage(satellitesCollection.satellites.map { it.message.toString() })
-            val posDTO = PositionDTO(position.x, position.y)
-            ResponseEntity.ok(CarrierDTO(posDTO, message))
-        }
+        return ResponseEntity.ok(this.getCarrierPositionAndMessage(satellitesCollection))
     }
 
     @PostMapping("/topsecret_split/{satelliteName}")
     fun addSatelliteInfo(@PathVariable satelliteName: String, @RequestBody satelliteSplitDTO: SatelliteSplitDTO) {
         val satelliteDTO = SatelliteDTO(satelliteName, satelliteSplitDTO.distance, satelliteSplitDTO.message)
         satelliteService.updateSatellite(satelliteDTO)
+    }
+
+    @GetMapping("/topsecret_split")
+    fun getTopSecretSplit(): ResponseEntity<CarrierDTO> {
+        val satellitesCollection = satelliteService.getAllSatellites()
+        return ResponseEntity.ok(this.getCarrierPositionAndMessage(satellitesCollection))
+    }
+
+    private fun getCarrierPositionAndMessage(satellitesCollection: SatelliteCollectionDTO): CarrierDTO {
+        val distances = satellitesCollection.satellites.map { it.distance }
+        val position = locationService.getLocation(distances)
+        val message = messageService.getMessage(satellitesCollection.satellites.map { it.message.toString() })
+        return CarrierDTO(PositionDTO(position.x, position.y), message);
     }
 }
