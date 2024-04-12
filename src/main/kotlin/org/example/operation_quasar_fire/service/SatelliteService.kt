@@ -7,30 +7,23 @@ import org.example.operation_quasar_fire.model.repository.SatelliteRepository
 import org.springframework.stereotype.Service
 
 @Service
-class SatelliteService {
+class SatelliteService : ISatelliteService {
+
     private val sateliteRepository: SatelliteRepository? = null
 
-    fun getSatellite(): SatelliteDTO {
-        return SatelliteDTO(toString(), 0.0f, listOf(toString()))
-    }
-
-    fun getAllSatellites(): SatelliteCollectionDTO {
+    override fun getAllSatellites(): SatelliteCollectionDTO {
         val satellites = this.sateliteRepository?.findAll()
         val satelliteDTOs = satellites?.map { satelliteToDto(it) } ?: emptyList()
         return SatelliteCollectionDTO(satellites = satelliteDTOs)
     }
 
-    fun updateSatellite(satelliteDTO: SatelliteDTO) {
+    override fun updateSatellite(satelliteDTO: SatelliteDTO) {
         val satellite = this.sateliteRepository?.findOneByName(satelliteDTO.name)
         if (satellite != null) {
             satellite.message = satelliteDTO.message.toString()
             satellite.distance = satelliteDTO.distance
             this.sateliteRepository?.save(satellite)
         }
-    }
-
-    fun saveSatellite(satelliteDTO: SatelliteDTO) {
-        this.sateliteRepository?.save(dtoToSatellite(satelliteDTO))
     }
 
     private fun dtoToSatellite(satelliteDTO: SatelliteDTO): Satellite {

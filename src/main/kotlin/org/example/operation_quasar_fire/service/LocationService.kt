@@ -4,8 +4,9 @@ import org.example.operation_quasar_fire.model.entities.Position
 import org.springframework.stereotype.Service
 
 @Service
-class LocationService {
-    fun getLocation(distances: List<Float>): Position {
+class LocationService : ILocationService {
+
+    override fun getLocation(distances: List<Float>): Position {
         val calculatedPosition = trilaterate(distances.toFloatArray(),  floatArrayOf())
         return Position(calculatedPosition[0], calculatedPosition[1])
     }

@@ -6,11 +6,9 @@ import org.example.operation_quasar_fire.dto.SatelliteDTO
 import org.example.operation_quasar_fire.dto.SatelliteSplitDTO
 import org.example.operation_quasar_fire.dto.SatelliteCollectionDTO
 import org.example.operation_quasar_fire.model.entities.Position
+import org.example.operation_quasar_fire.service.*
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.example.operation_quasar_fire.service.LocationService
-import org.example.operation_quasar_fire.service.MessageService
-import org.example.operation_quasar_fire.service.SatelliteService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 
@@ -18,11 +16,11 @@ import org.springframework.http.MediaType
 @RequestMapping("/topsecret")
 class OperationQuasarFireController {
     @Autowired
-    private lateinit var locationService: LocationService
+    private lateinit var locationService: ILocationService
     @Autowired
-    private lateinit var messageService: MessageService
+    private lateinit var messageService: IMessageService
     @Autowired
-    private lateinit var satelliteService: SatelliteService
+    private lateinit var satelliteService: ISatelliteService
 
 
     @GetMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
