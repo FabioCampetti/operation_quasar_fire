@@ -28,6 +28,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.apache.commons:commons-math3:3.6.1")
 	implementation("javax.persistence:javax.persistence-api:2.2")
+	implementation ("io.springfox:springfox-boot-starter:3.0.0")
 }
 
 tasks.withType<KotlinCompile> {

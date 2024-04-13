@@ -4,9 +4,19 @@ import org.example.operation_quasar_fire.exceptions.InvalidDataException
 import org.example.operation_quasar_fire.model.entities.Position
 import org.springframework.stereotype.Service
 
+/**
+ * Service for calculating the location of the spaceship.
+ */
 @Service
 class LocationService : ILocationService {
 
+    /**
+     * Calculates the location of the spaceship based on distances from satellites.
+     *
+     * @param distances Distances from satellites.
+     * @return Position of the spaceship.
+     * @throws InvalidDataException If the distances are invalid or insufficient.
+     */
     override fun getLocation(distances: List<Float?>): Position {
         val satellitesDistances = distances.filterNotNull()
         if (satellitesDistances.size < distances.size  || distances.size < 3) {

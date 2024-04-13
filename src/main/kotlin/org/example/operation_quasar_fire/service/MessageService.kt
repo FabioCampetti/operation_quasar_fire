@@ -3,9 +3,18 @@ package org.example.operation_quasar_fire.service
 import org.example.operation_quasar_fire.exceptions.InvalidDataException
 import org.springframework.stereotype.Service
 
+/**
+ * Service for processing and constructing the final message from satellite transmissions.
+ */
 @Service
 class MessageService : IMessageService {
 
+    /**
+     * Constructs the final message from satellite transmissions.
+     *
+     * @param messages List of messages received from each satellite.
+     * @return Constructed message.
+     */
     override fun getMessage(messages: List<List<String?>>): String {
         if (messages.any { it.any { it == null } }) {
             throw InvalidDataException("Invalid message from satellite")

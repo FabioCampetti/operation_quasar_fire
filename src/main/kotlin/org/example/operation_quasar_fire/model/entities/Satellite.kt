@@ -2,6 +2,9 @@ package org.example.operation_quasar_fire.model.entities
 
 import jakarta.persistence.*
 
+/**
+ * Represents a satellite entity.
+ */
 @Entity
 @Table(name = "satellite")
 data class Satellite (

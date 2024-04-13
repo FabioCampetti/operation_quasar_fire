@@ -7,12 +7,23 @@ import org.example.operation_quasar_fire.model.entities.Satellite
 import org.example.operation_quasar_fire.model.repository.SatelliteRepository
 import org.springframework.beans.factory.annotation.Autowired
 
+/**
+ * Component responsible for initializing the database with default satellite data.
+ */
 @Component
-class DatabaseInitializer: ApplicationRunner {
+class DatabaseInitializer : ApplicationRunner {
 
+    /**
+     * Repository for accessing satellite data.
+     */
     @Autowired
     private lateinit var satelliteRepository: SatelliteRepository
 
+    /**
+     * Runs the database initialization process upon application startup.
+     *
+     * @param args Command-line arguments passed to the application.
+     */
     override fun run(args: ApplicationArguments) {
         val satellite1 = Satellite(name = "kenobi", distance = 100.0f, message = "Vader coming")
         val satellite2 = Satellite(name = "skywalker", distance = 150.0f, message = "is coming")
