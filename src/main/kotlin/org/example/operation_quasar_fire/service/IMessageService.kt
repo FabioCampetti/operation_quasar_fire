@@ -4,5 +4,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface IMessageService {
-    fun getMessage(messages: List<List<String>>): String
+    fun getMessage(messages: List<List<String?>>): String
 }

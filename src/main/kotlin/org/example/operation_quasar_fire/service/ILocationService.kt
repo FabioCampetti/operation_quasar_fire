@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface ILocationService {
-    fun getLocation(distances: List<Float>): Position
+    fun getLocation(distances: List<Float?>): Position
 }
