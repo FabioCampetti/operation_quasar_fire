@@ -26,14 +26,6 @@ class SatelliteService : ISatelliteService {
         }
     }
 
-    private fun dtoToSatellite(satelliteDTO: SatelliteDTO): Satellite {
-        return Satellite(
-            name = satelliteDTO.name,
-            distance = satelliteDTO.distance,
-            message = satelliteDTO.message.toString()
-        )
-    }
-
     private fun satelliteToDto(satellite: Satellite): SatelliteDTO {
         return SatelliteDTO(
             name = satellite.name,

@@ -27,6 +27,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.apache.commons:commons-math3:3.6.1")
+	implementation("javax.persistence:javax.persistence-api:2.2")
 }
 
 tasks.withType<KotlinCompile> {
