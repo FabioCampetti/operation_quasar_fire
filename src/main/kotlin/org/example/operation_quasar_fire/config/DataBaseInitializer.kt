@@ -34,16 +34,20 @@ class DatabaseInitializer : ApplicationRunner {
      */
     override fun run(args: ApplicationArguments) {
 
-        val position1 = positionRepository.save(Position(x = -500f, y = -200f))
-        val position2 = positionRepository.save(Position(x = 100f, y = -100f))
-        val position3 = positionRepository.save(Position(x = 500f, y = 100f))
+        if (satelliteRepository.count() == 0L && positionRepository.count() == 0L) {
+            val position1 = Position(x = -500f, y = -200f)
+            val position2 = Position(x = 100f, y = -100f)
+            val position3 = Position(x = 500f, y = 100f)
 
-        //positionRepository.saveAll(listOf(position1, position2, position3))
+            positionRepository.saveAll(listOf(position1, position2, position3))
 
-        val satellite1 = Satellite(name = "kenobi", distance = 100.0f, message = "Vader coming", position = position1)
-        val satellite2 = Satellite(name = "skywalker", distance = 150.0f, message = "is coming", position = position2)
-        val satellite3 = Satellite(name = "sato", distance = 200.0f, message = "Vader is", position = position3)
+            val satellite1 =
+                Satellite(name = "kenobi", distance = 100.0f, message = "Vader coming", position = position1)
+            val satellite2 =
+                Satellite(name = "skywalker", distance = 150.0f, message = "is coming", position = position2)
+            val satellite3 = Satellite(name = "sato", distance = 200.0f, message = "Vader is", position = position3)
 
-        satelliteRepository.saveAll(listOf(satellite1, satellite2, satellite3))
+            satelliteRepository.saveAll(listOf(satellite1, satellite2, satellite3))
+        }
     }
 }

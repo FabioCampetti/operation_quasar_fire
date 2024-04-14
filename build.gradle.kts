@@ -33,6 +33,7 @@ dependencies {
 	implementation ("javax.servlet:javax.servlet-api:4.0.1")
 	implementation ("org.apache.commons:commons-math3:3.6.1")
 	implementation("com.lemmingapex.trilateration:trilateration:1.0.2")
+	implementation ("mysql:mysql-connector-java:8.0.33")
 }
 
 tasks.withType<KotlinCompile> {
