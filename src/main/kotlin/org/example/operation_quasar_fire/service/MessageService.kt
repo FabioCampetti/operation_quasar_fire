@@ -1,6 +1,6 @@
 package org.example.operation_quasar_fire.service
 
-import org.example.operation_quasar_fire.exceptions.InvalidDataException
+import org.example.operation_quasar_fire.exception.InvalidDataException
 import org.springframework.stereotype.Service
 
 /**

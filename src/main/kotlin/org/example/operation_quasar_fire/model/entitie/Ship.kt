@@ -1,4 +1,4 @@
-package org.example.operation_quasar_fire.model.entities
+package org.example.operation_quasar_fire.model.entitie
 
 /**
  * Represents a ship with a message.

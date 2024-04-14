@@ -1,10 +1,10 @@
 package org.example.operation_quasar_fire.config
 
-import org.example.operation_quasar_fire.model.entities.Position
+import org.example.operation_quasar_fire.model.entitie.Position
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
-import org.example.operation_quasar_fire.model.entities.Satellite
+import org.example.operation_quasar_fire.model.entitie.Satellite
 import org.example.operation_quasar_fire.model.repository.SatellitePositionRepository
 import org.example.operation_quasar_fire.model.repository.SatelliteRepository
 import org.springframework.beans.factory.annotation.Autowired

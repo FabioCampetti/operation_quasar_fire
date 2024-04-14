@@ -4,7 +4,7 @@ import com.lemmingapex.trilateration.NonLinearLeastSquaresSolver
 import com.lemmingapex.trilateration.TrilaterationFunction
 import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer
 import org.example.operation_quasar_fire.dto.PositionDTO
-import org.example.operation_quasar_fire.exceptions.InvalidDataException
+import org.example.operation_quasar_fire.exception.InvalidDataException
 import org.example.operation_quasar_fire.model.repository.SatellitePositionRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

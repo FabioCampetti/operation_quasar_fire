@@ -2,8 +2,8 @@ package org.example.operation_quasar_fire.service
 
 import org.example.operation_quasar_fire.dto.SatelliteCollectionDTO
 import org.example.operation_quasar_fire.dto.SatelliteDTO
-import org.example.operation_quasar_fire.exceptions.ResourceNotFoundException
-import org.example.operation_quasar_fire.model.entities.Satellite
+import org.example.operation_quasar_fire.exception.ResourceNotFoundException
+import org.example.operation_quasar_fire.model.entitie.Satellite
 import org.example.operation_quasar_fire.model.repository.SatelliteRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

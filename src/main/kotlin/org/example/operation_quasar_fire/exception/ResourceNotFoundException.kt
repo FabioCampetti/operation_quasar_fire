@@ -1,4 +1,4 @@
-package org.example.operation_quasar_fire.exceptions
+package org.example.operation_quasar_fire.exception
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
