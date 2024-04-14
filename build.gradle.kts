@@ -24,11 +24,15 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-web-services")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.apache.commons:commons-math3:3.6.1")
 	implementation("javax.persistence:javax.persistence-api:2.2")
-	implementation ("io.springfox:springfox-boot-starter:3.0.0")
+	implementation("io.springfox:springfox-boot-starter:3.0.0")
+	implementation ("javax.servlet:javax.servlet-api:4.0.1")
+	implementation ("org.apache.commons:commons-math3:3.6.1")
+	implementation("com.lemmingapex.trilateration:trilateration:1.0.2")
 }
 
 tasks.withType<KotlinCompile> {

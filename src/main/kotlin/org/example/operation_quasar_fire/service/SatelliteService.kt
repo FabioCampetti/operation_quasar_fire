@@ -5,6 +5,7 @@ import org.example.operation_quasar_fire.dto.SatelliteDTO
 import org.example.operation_quasar_fire.exceptions.ResourceNotFoundException
 import org.example.operation_quasar_fire.model.entities.Satellite
 import org.example.operation_quasar_fire.model.repository.SatelliteRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 /**
@@ -16,7 +17,8 @@ class SatelliteService : ISatelliteService {
     /**
      * Repository for accessing satellite data.
      */
-    private val satelliteRepository: SatelliteRepository? = null
+    @Autowired
+    private lateinit var  satelliteRepository: SatelliteRepository
 
     /**
      * Retrieves information about all satellites.
@@ -24,8 +26,8 @@ class SatelliteService : ISatelliteService {
      * @return Collection of satellite data.
      */
     override fun getAllSatellites(): SatelliteCollectionDTO {
-        val satellites = this.satelliteRepository?.findAll()
-        val satelliteDTOs = satellites?.map { satelliteToDto(it) } ?: emptyList()
+        val satellites = this.satelliteRepository.findAll()
+        val satelliteDTOs = satellites.map { satelliteToDto(it) }
         return SatelliteCollectionDTO(satellites = satelliteDTOs)
     }
 
@@ -41,6 +43,7 @@ class SatelliteService : ISatelliteService {
         if (satellite != null) {
             satellite.message = satelliteDTO.message.joinToString(separator = " ")
             satellite.distance = satelliteDTO.distance
+            satellite.position = satellite.position
             this.satelliteRepository?.save(satellite)
         } else {
             throw ResourceNotFoundException("Satellite with name: $satelliteName  not found")

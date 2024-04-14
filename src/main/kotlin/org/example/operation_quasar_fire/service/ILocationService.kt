@@ -1,7 +1,7 @@
 package org.example.operation_quasar_fire.service
 
+import org.example.operation_quasar_fire.dto.PositionDTO
 import org.example.operation_quasar_fire.exceptions.InvalidDataException
-import org.example.operation_quasar_fire.model.entities.Position
 
 /**
 * Interface for calculating the location of the spaceship.
@@ -15,5 +15,5 @@ interface ILocationService {
      * @return Position of the spaceship.
      * @throws InvalidDataException If the distances are invalid or insufficient.
      */
-    fun getLocation(distances: List<Float?>): Position
+    fun getLocation(distances: List<Float?>): PositionDTO
 }

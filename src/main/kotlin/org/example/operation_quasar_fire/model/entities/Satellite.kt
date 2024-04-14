@@ -16,7 +16,8 @@ data class Satellite (
     @Column(name = "distance")
     var distance: Float? = null,
     @Column(name = "message")
-    var message: String? = null
-){
-    constructor() : this(null, null, null, null)
-}
+    override var message: String? = null,
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    override var position: Position? = null
+): Ship

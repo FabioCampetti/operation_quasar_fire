@@ -1,7 +1,12 @@
 package org.example.operation_quasar_fire.service
 
+import com.lemmingapex.trilateration.NonLinearLeastSquaresSolver
+import com.lemmingapex.trilateration.TrilaterationFunction
+import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer
+import org.example.operation_quasar_fire.dto.PositionDTO
 import org.example.operation_quasar_fire.exceptions.InvalidDataException
-import org.example.operation_quasar_fire.model.entities.Position
+import org.example.operation_quasar_fire.model.repository.SatellitePositionRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 /**
@@ -11,33 +16,35 @@ import org.springframework.stereotype.Service
 class LocationService : ILocationService {
 
     /**
+     * Repository for accessing satellite data.
+     */
+    @Autowired
+    private lateinit var positionRepository: SatellitePositionRepository
+
+    /**
      * Calculates the location of the spaceship based on distances from satellites.
      *
      * @param distances Distances from satellites.
      * @return Position of the spaceship.
      * @throws InvalidDataException If the distances are invalid or insufficient.
      */
-    override fun getLocation(distances: List<Float?>): Position {
-        val satellitesDistances = distances.filterNotNull()
-        if (satellitesDistances.size < distances.size  || distances.size < 3) {
-            throw InvalidDataException("Invalid distances from satellites")
-        }
-        val calculatedPosition = trilaterate(satellitesDistances.toFloatArray(),  floatArrayOf())
-        return Position(calculatedPosition[0], calculatedPosition[1])
-    }
+    override fun getLocation(distances: List<Float?>): PositionDTO {
+        val distancesDoubleArray = distances.map { it?.toDouble() ?: 0.0 }.toDoubleArray()
 
-    private fun trilaterate(distances: FloatArray, positions: FloatArray): FloatArray {
-        var sumX = 0.0f
-        var sumY = 0.0f
-        var sumWeights = 0.0f
+        val positionsArray = positionRepository.findAll().filterNotNull().map { doubleArrayOf(it.x.toDouble(), it.y.toDouble()) }
 
-        for (i in positions.indices step 2) {
-            val weight = 1.0f / distances[i / 2]
-            sumX += positions[i] * weight
-            sumY += positions[i + 1] * weight
-            sumWeights += weight
+        val trilaterationFunction = positionsArray.let {
+            TrilaterationFunction(
+                it.toTypedArray(),
+                distancesDoubleArray
+            )
         }
 
-        return floatArrayOf(sumX / sumWeights, sumY / sumWeights)
+        val nSolver = trilaterationFunction.let { NonLinearLeastSquaresSolver(it, LevenbergMarquardtOptimizer()) }
+        val optimum = nSolver.solve()
+
+        val locationArray = optimum?.point?.toArray()
+
+        return locationArray?.let { PositionDTO(it[0].toFloat(), it[1].toFloat()) } ?: PositionDTO(0f, 0f)
     }
 }
