@@ -18,6 +18,7 @@ class TopSecretController : OperationQuasarFireController() {
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "Carrier position and message retrieved"),
         ApiResponse(responseCode = "400", description = "Invalid data supplied"),
+        ApiResponse(responseCode = "500", description = "Internal error server")
     ])
     @PostMapping("/topsecret")
     fun getTopSecretLocation(

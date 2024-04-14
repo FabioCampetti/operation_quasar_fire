@@ -23,6 +23,7 @@ class TopSecretSplitController : OperationQuasarFireController() {
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "Satellite information added"),
         ApiResponse(responseCode = "400", description = "Invalid data supplied"),
+        ApiResponse(responseCode = "500", description = "Internal error server")
     ])
     fun addSatelliteInfo(
         @Parameter(description = "Name of the satellite", required = true) @PathVariable satelliteName: String,
@@ -36,6 +37,7 @@ class TopSecretSplitController : OperationQuasarFireController() {
     @ApiResponses(value = [
         ApiResponse(responseCode = "200", description = "Carrier position and message retrieved"),
         ApiResponse(responseCode = "404", description = "No data found"),
+        ApiResponse(responseCode = "500", description = "Internal error server")
     ])
     @GetMapping("/topsecret_split")
     fun getTopSecretSplit(): ResponseEntity<CarrierDTO> {
