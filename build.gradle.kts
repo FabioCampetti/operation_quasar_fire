@@ -29,7 +29,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.apache.commons:commons-math3:3.6.1")
 	implementation("javax.persistence:javax.persistence-api:2.2")
-	implementation("io.springfox:springfox-boot-starter:3.0.0")
+	implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	implementation ("javax.servlet:javax.servlet-api:4.0.1")
 	implementation ("org.apache.commons:commons-math3:3.6.1")
 	implementation("com.lemmingapex.trilateration:trilateration:1.0.2")
