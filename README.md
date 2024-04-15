@@ -31,7 +31,7 @@ La documentación de la API, que incluye los diferentes endpoints disponibles, s
 
 Esta API se encuentra desplegada en un repositorio en la nube, y las consultas a los distintos servicios proporcionados por esta son accesibles a través de las siguientes URLs:
 
-- [GET] [https://operation-quasar-fire.onrender.com/topsecret](https://operation-quasar-fire.onrender.com/topsecret)
+- [POST] [https://operation-quasar-fire.onrender.com/topsecret](https://operation-quasar-fire.onrender.com/topsecret)
 - [GET] [https://operation-quasar-fire.onrender.com/topsecret_split](https://operation-quasar-fire.onrender.com/topsecret_split)
 - [POST] [https://operation-quasar-fire.onrender.com/topsecret_split/{sateliteName}](https://operation-quasar-fire.onrender.com/topsecret_split/{sateliteName})
 
